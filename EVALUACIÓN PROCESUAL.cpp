@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #include <iostream>
 #include <string>
 using namespace std;
@@ -112,6 +111,7 @@ void buscar(const Lista& lista, string nombre) {
         cout << "\n Estudiante no encontrado.\n";
     }
 }
+
 // Menú principal para el registro dde estudiantes
 int main() {
     Lista lista;
@@ -129,7 +129,7 @@ int main() {
         cout << "========================================\n";
         cout << "  Opcion: ";
         cin  >> opcion;
-        cin.ignore();
+        cin.ignore();  // limpiar el buffer
 
         if (opcion == 1) {
             string nombre, codigo;
