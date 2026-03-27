@@ -111,3 +111,53 @@ void buscar(const Lista& lista, string nombre) {
         cout << "\n Estudiante no encontrado.\n";
     }
 }
+// Menú principal para el registro dde estudiantes
+int main() {
+    Lista lista;
+    int opcion;
+
+    do {
+        cout << "\n========================================\n";
+        cout << "   SISTEMA DE GESTION DE TURNOS\n";
+        cout << "========================================\n";
+        cout << "  1. Registrar estudiante\n";
+        cout << "  2. Atender estudiante\n";
+        cout << "  3. Mostrar estudiantes en espera\n";
+        cout << "  4. Buscar estudiante por nombre\n";
+        cout << "  5. Salir\n";
+        cout << "========================================\n";
+        cout << "  Opcion: ";
+        cin  >> opcion;
+        cin.ignore();
+
+        if (opcion == 1) {
+            string nombre, codigo;
+            cout << "\nNombre : ";
+            getline(cin, nombre);
+            cout << "Codigo : ";
+            getline(cin, codigo);
+            registrar(lista, nombre, codigo);
+
+        } else if (opcion == 2) {
+            atender(lista);
+
+        } else if (opcion == 3) {
+            mostrar(lista);
+
+        } else if (opcion == 4) {
+            string nombre;
+            cout << "\nNombre a buscar: ";
+            getline(cin, nombre);
+            buscar(lista, nombre);
+
+        } else if (opcion == 5) {
+            cout << "\n¡Hasta luego!\n";
+
+        } else {
+            cout << "\n Opcion invalida.\n";
+        }
+
+    } while (opcion != 5);
+
+    return 0;
+}
