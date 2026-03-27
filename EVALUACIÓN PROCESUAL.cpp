@@ -11,11 +11,14 @@ struct Nodo {
 };
 
 struct Lista {
-    Nodo* head;
-    Nodo* tail;
-    int tamanio;
+    Nodo* head;  // primero en llegar (se atiende primero)
+    Nodo* tail;  // último en llegar  (se agrega aquí)
+    int   tamanio;
+
+    Lista() : head(nullptr), tail(nullptr), tamanio(0) {}
 };
-// 1. Registrar estudiante (agrega al FINAL) 
+
+//  1. Registrar estudiante (agrega al FINAL) 
 void registrar(Lista& lista, string nombre, string codigo) {
     Nodo* nuevo = new Nodo();
     nuevo->nombre = nombre;
@@ -54,7 +57,7 @@ void atender(Lista& lista) {
     if (lista.head != nullptr) {
         lista.head->prev = nullptr;
     } else {
-        lista.tail = nullptr;
+        lista.tail = nullptr;  // la lista quedó vacía
     }
 
     delete atendido;
@@ -78,4 +81,33 @@ void mostrar(const Lista& lista) {
         pos++;
     }
     cout << "****************************************\n";
+}
+
+// 4. Buscar estudiante por nombre 
+void buscar(const Lista& lista, string nombre) {
+    if (lista.head == nullptr) {
+        cout << "\n La lista esta vacia.\n";
+        return;
+    }
+
+    Nodo* actual = lista.head;
+    int pos = 1;
+    bool encontrado = false;
+
+    while (actual != nullptr) {
+        if (actual->nombre == nombre) {
+            cout << "\n  Estudiante encontrado:\n";
+            cout << "  Posicion : " << pos << "\n";
+            cout << "  Nombre   : " << actual->nombre << "\n";
+            cout << "  Codigo   : " << actual->codigo << "\n";
+            encontrado = true;
+            break;
+        }
+        actual = actual->next;
+        pos++;
+    }
+
+    if (!encontrado) {
+        cout << "\n Estudiante no encontrado.\n";
+    }
 }
